@@ -70,17 +70,7 @@ class MainActivity : AppCompatActivity() {
     // ----------------------------------------
     private fun createLocationRequest() {
 
-        this.locationRequest = LocationRequest.create()?.apply {
-            // 更新間隔(アプリが現在地の更新情報を受信する頻度をミリ秒単位で設定)
-            interval = 10000
-
-            // 最短更新間隔(アプリが現在地の更新情報を処理できる最高頻度をミリ秒単位で設定。この例では5秒間隔。)
-            fastestInterval = 5000
-
-            // 優先度(精度を調整可能。大雑把なほうが省電力)
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-
-        }
+        this.locationRequest = LocationRequest.create()
 
         // 位置情報に接続するために、位置情報リクエストを追加
         val builder = LocationSettingsRequest.Builder().addLocationRequest(locationRequest!!)

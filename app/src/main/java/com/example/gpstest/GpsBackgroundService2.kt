@@ -27,7 +27,7 @@ class GpsBackgroundService2() : Service() {
     private lateinit var locationCallback: LocationCallback
     lateinit var settingsClient: SettingsClient
 
-    private val GAE_URL :String = "<GAEサイト>"
+    private val GAE_URL :String = "<GAEのURL>"
     private var locationRequest: LocationRequest?  = null
 
     override fun onBind(intent: Intent?): IBinder? {
