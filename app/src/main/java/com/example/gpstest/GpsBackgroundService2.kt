@@ -27,7 +27,7 @@ class GpsBackgroundService2() : Service() {
     private lateinit var locationCallback: LocationCallback
     lateinit var settingsClient: SettingsClient
 
-    private val GAE_URL :String = "https://xxxxx/xzzzzzz"
+    private val GAE_URL :String = "<GAEのURL　※このURLにPOST送信するよ！>"
     private var locationRequest: LocationRequest?  = null
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -49,6 +49,8 @@ class GpsBackgroundService2() : Service() {
             .setSmallIcon(R.mipmap.ic_launcher)
             .setCategory(Notification.CATEGORY_SERVICE)
             .build()
+
+        // スレッドで開始する！
         Thread(
             Runnable {
                 startGpsJob(intent)
@@ -128,11 +130,12 @@ class GpsBackgroundService2() : Service() {
         }
     }
 
+    // ハンドラー
     private fun startLocationUpdates() {
         Log.d("GpsBackgroundService", "startLocationUpdates()-start")
         fusedLocationClient.requestLocationUpdates(this.locationRequest,
             locationCallback,
-            this.mainLooper /* Looper */)
+            this.mainLooper /* Looper */) // Looperを指定しないと一回で終わってしまうので注意。
         Log.d("GpsBackgroundService", "startLocationUpdates()-end")
     }
 
@@ -145,7 +148,7 @@ class GpsBackgroundService2() : Service() {
                 listOf(
                     "longitude" to location?.longitude.toString(), // 経度
                     "latitude" to location?.latitude.toString(),   // 緯度
-                    "latitude" to location?.latitude.toString(),   // 高度
+                    "altitude" to location?.altitude.toString(),   // 高度
                     "dt" to Common.getToday()
                 )
             ).response { request, response, result ->
