@@ -27,7 +27,7 @@ class GpsBackgroundService2() : Service() {
     private lateinit var locationCallback: LocationCallback
     lateinit var settingsClient: SettingsClient
 
-    private val GAE_URL :String = "<GAEのURL>"
+    private val GAE_URL :String = "https://xxxxx/xzzzzzz"
     private var locationRequest: LocationRequest?  = null
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -117,7 +117,11 @@ class GpsBackgroundService2() : Service() {
             override fun onLocationResult(locationResult: LocationResult?) {
                 locationResult ?: return
                 for (location in locationResult.locations){
-                    Log.d("GpsBackgroundService", "onHandleIntent()-kousin : " + location?.longitude.toString() + "," + location?.latitude.toString() + ","  + Common.getToday())
+                    Log.d("GpsBackgroundService", "onHandleIntent()-kousin : "
+                            + location?.longitude.toString() + "," // 経度
+                            + location?.latitude.toString() + ","  // 緯度
+                            + location?.altitude.toString() + ","  // 高度
+                            + Common.getToday())
                     sendGPS(location)
                 }
             }
@@ -139,8 +143,9 @@ class GpsBackgroundService2() : Service() {
             // Postで送信
             val response1 = GAE_URL.httpPost(
                 listOf(
-                    "longitude" to location?.longitude.toString(),
-                    "latitude" to location?.latitude.toString(),
+                    "longitude" to location?.longitude.toString(), // 経度
+                    "latitude" to location?.latitude.toString(),   // 緯度
+                    "latitude" to location?.latitude.toString(),   // 高度
                     "dt" to Common.getToday()
                 )
             ).response { request, response, result ->
