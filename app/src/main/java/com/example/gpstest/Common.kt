@@ -5,7 +5,7 @@ import java.util.*
 
 class Common {
 
-    // Staticで利用できるようにする
+    // Staticで利用できるようにする。
     companion object {
         fun getToday(): String {
             val date = Date()

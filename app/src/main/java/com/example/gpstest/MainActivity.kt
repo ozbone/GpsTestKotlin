@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // 位置情報の初期設定や権限確認など
+        // 位置情報の初期設定や権限確認など。
         createLocationRequest()
 
         val intent3 = Intent(this, GpsBackgroundService2::class.java)
