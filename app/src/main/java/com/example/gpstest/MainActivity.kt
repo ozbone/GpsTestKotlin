@@ -2,31 +2,18 @@ package com.example.gpstest
 
 import android.Manifest
 import android.app.ActivityManager
-import android.app.IntentService
 import android.content.*
 import android.content.pm.PackageManager
-import android.location.Location
-import android.location.LocationListener
-import android.location.SettingInjectorService
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.IBinder
-import android.util.Log
-import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.tasks.Task
 import kotlinx.android.synthetic.main.activity_main.*
-import com.github.kittinunf.fuel.httpPost
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             startService(intent3)
             setBtnEnabled(true)
             txtStartTime.setText("開始時刻：" + Common.getToday())
+            txtEndTime.setText("終了時刻：")
         }
 
         // 終了ボタン
@@ -96,7 +84,6 @@ class MainActivity : AppCompatActivity() {
                     requestingLocationUpdates = true
                 } catch (sendEx: IntentSender.SendIntentException) {
                     // Ignore the error.
-                    text_view.text = "エラー"
                 }
             }
         }
