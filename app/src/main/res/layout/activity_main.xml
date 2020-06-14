@@ -31,8 +31,8 @@
         android:layout_marginTop="32dp"
         android:text="@string/txt_start_time"
         android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@+id/btn_stop"
-        tools:layout_editor_absoluteX="1dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_stop" />
 
     <Button
         android:id="@+id/btn_start"
