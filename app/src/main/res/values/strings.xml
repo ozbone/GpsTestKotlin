@@ -4,4 +4,7 @@
     <string name="btn_end">停止</string>
     <string name="txt_end_time" />
     <string name="txt_start_time" />
+    <string name="b_list_text">履歴</string>
+    <string name="main_title">タイトル：</string>
+    <string name="bikou">備考：</string>
 </resources>
